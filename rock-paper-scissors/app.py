@@ -12,7 +12,9 @@ computer_choice = random.choice(choose_from)
 print("Computer chose")
 print(computer_choice)
 
-user_wins = (user_choice == options.rock and computer_choice == options.scissors) or (user_choice == options.scissors and computer_choice == options.paper) or (user_choice == options.paper and computer_choice == options.rock)
+user_wins = (user_choice == options.rock and computer_choice == options.scissors) or (
+            user_choice == options.scissors and computer_choice == options.paper) or (
+                        user_choice == options.paper and computer_choice == options.rock)
 
 if user_wins:
     print("You win")
