@@ -5,24 +5,25 @@ placeholder_char = "_"
 word_list = ['aardvark', 'baboon', 'camel']
 
 word = random.choice(word_list)
+word_letters_list = list(word)
 print(word)
 
-placeholder = ""
 word_length = len(word)
+display_letter_list = []
 
 for position in range(word_length):
-    placeholder += placeholder_char
+    display_letter_list.append(placeholder_char)
 
-print(placeholder)
-
-letter_guessed = input("Guess a letter: ").lower()
-
-display = ""
-
-for letter in word:
-    if letter == letter_guessed:
-        display += letter
-    else:
-        display += placeholder_char
+display = ''.join(display_letter_list)
 
 print(display)
+
+while display != word:
+    letter_guessed = input("Guess a letter: ").lower()
+
+    for index, letter in enumerate(word_letters_list):
+        if letter == letter_guessed:
+            display_letter_list[index] = letter
+
+    display = ''.join(display_letter_list)
+    print(display)
