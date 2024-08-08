@@ -1,5 +1,6 @@
 import random
 
+separator = ''
 placeholder_char = "_"
 
 word_list = ['aardvark', 'baboon', 'camel']
@@ -14,7 +15,7 @@ display_letter_list = []
 for position in range(word_length):
     display_letter_list.append(placeholder_char)
 
-display = ''.join(display_letter_list)
+display = separator.join(display_letter_list)
 
 print(display)
 
@@ -25,5 +26,5 @@ while display != word:
         if letter == letter_guessed:
             display_letter_list[index] = letter
 
-    display = ''.join(display_letter_list)
+    display = separator.join(display_letter_list)
     print(display)
