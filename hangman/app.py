@@ -1,5 +1,5 @@
 import random
-from data import stages
+from art import stages
 
 separator = ''
 placeholder_char = "_"
