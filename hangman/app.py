@@ -21,7 +21,11 @@ display = separator.join(display_letter_list)
 lives = len(stages)
 
 while lives > 0:
+    print(f"************************** {lives} LIVES LEFT **************************")
     letter_guessed = input("Guess a letter: ").lower()
+
+    if letter_guessed in display_letter_list:
+        print(f"You 've already guessed {letter_guessed}")
 
     for index, letter in enumerate(word_letters_list):
         if letter == letter_guessed:
@@ -29,10 +33,14 @@ while lives > 0:
 
     display = separator.join(display_letter_list)
     print(display)
+    if display == word:
+        print("************************** YOU WIN **************************")
+        break
 
     if letter_guessed not in word:
         lives -= 1
+        print(f"You guessed {letter_guessed}, that's not in the word. You lose a life.")
         print(stages[lives])
 
     if lives == 0:
-        print("You lose")
+        print("************************** YOU LOSE **************************")
