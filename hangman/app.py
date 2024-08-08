@@ -1,5 +1,5 @@
 import random
-import data
+from data import stages
 
 separator = ''
 placeholder_char = "_"
@@ -18,7 +18,7 @@ for position in range(word_length):
 
 display = separator.join(display_letter_list)
 
-lives = len(data.stages)
+lives = len(stages)
 
 while lives > 0:
     letter_guessed = input("Guess a letter: ").lower()
@@ -32,7 +32,7 @@ while lives > 0:
 
     if letter_guessed not in word:
         lives -= 1
-        print(data.stages[lives])
+        print(stages[lives])
 
     if lives == 0:
         print("You lose")
