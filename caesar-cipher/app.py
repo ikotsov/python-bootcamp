@@ -11,9 +11,9 @@ def encrypt(original_text, shift_amount):
     for letter in original_text:
         current_position = alphabet.index(letter)
         shifted_position = current_position + shift_amount
-        final_position = shifted_position % len(alphabet)
+        shifted_position %= len(alphabet)
 
-        encrypted_text += alphabet[final_position]
+        encrypted_text += alphabet[shifted_position]
 
     print(f"Here is the encoded result {encrypted_text}")
 
