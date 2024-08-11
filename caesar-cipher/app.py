@@ -7,11 +7,11 @@ shift = int(input("Type a shift number\n").lower())
 
 
 def caesar(original_text, shift_amount, encode_or_decode):
+    if encode_or_decode == 'decode':
+        shift_amount *= -1
+
     output_text = ''
     for letter in original_text:
-
-        if encode_or_decode == 'decode':
-            shift_amount *= -1
 
         current_position = alphabet.index(letter)
         shifted_position = current_position + shift_amount
