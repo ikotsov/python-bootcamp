@@ -8,6 +8,7 @@ This repository documents my journey through the basics of Python, where I've ex
 - Loops: Repeating tasks efficiently using for and while loops.
 - Functions: Creating reusable blocks of code to perform specific tasks with defined inputs and outputs.
 - Dictionaries: Utilizing key-value pairs to store and retrieve data.
+- Namespaces: Local vs. Global scope
 
 ### ASCII Art
 
