@@ -22,4 +22,4 @@ direction = input("Type 'encode' to encrypt, type 'decode' to decrypt\n").lower(
 text = input("Type your message\n").lower()
 shift = int(input("Type a shift number\n").lower())
 
-caesar(text, shift, direction)
+caesar(original_text=text, shift_amount=shift, encode_or_decode=direction)
