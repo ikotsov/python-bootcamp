@@ -2,7 +2,7 @@ import random
 import data
 
 print("Welcome to the Password Generator App!")
-number_of_letters= int(input("How many letters would you like in your password?\n")) 
+number_of_letters = int(input("How many letters would you like in your password?\n"))
 number_of_symbols = int(input(f"How many symbols would you like?\n"))
 number_of_numbers = int(input(f"How many numbers would you like?\n"))
 
