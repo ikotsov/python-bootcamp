@@ -8,7 +8,12 @@ def game():
         user_input = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
         if user_input == 'latte' or user_input == 'espresso' or user_input == 'cappuccino':
-            check_resources(user_input)
+            if not enough_water(user_input):
+                print("Sorry there is not enough water.")
+            if not enough_milk(user_input):
+                print("Sorry there is not enough milk.")
+            if not enough_coffee(user_input):
+                print("Sorry there is not enough coffee.")
 
         if user_input == 'report':
             print(report())
@@ -21,27 +26,19 @@ def report():
     return f"Water: {resources['water']}ml \nMilk: {resources['milk']}ml \nCoffee {resources['coffee']}g"
 
 
-def check_resources(coffee_type):
-    if get_menu_water(coffee_type) > resources["water"]:
-        print(f"Sorry there is not enough water.")
-
-    if get_menu_milk(coffee_type) > resources["milk"]:
-        print(f"Sorry there is not enough milk.")
-
-    if get_menu_coffee(coffee_type) > resources["coffee"]:
-        print(f"Sorry there is not enough coffee.")
+def enough_water(coffee_type):
+    water_left = MENU[coffee_type]["ingredients"]["water"]
+    return water_left < resources["water"]
 
 
-def get_menu_water(coffee_type):
-    return MENU[coffee_type]["ingredients"]["water"]
+def enough_milk(coffee_type):
+    milk_left = MENU[coffee_type]["ingredients"]["milk"]
+    return milk_left < resources["milk"]
 
 
-def get_menu_milk(coffee_type):
-    return MENU[coffee_type]["ingredients"]["milk"]
-
-
-def get_menu_coffee(coffee_type):
-    return MENU[coffee_type]["ingredients"]["coffee"]
+def enough_coffee(coffee_type):
+    coffee_left = MENU[coffee_type]["ingredients"]["coffee"]
+    return coffee_left < resources["coffee"]
 
 
 game()
