@@ -31,6 +31,25 @@ resources = {
 }
 
 
+def game():
+    on = True
+
+    while on:
+        type_of_coffee = input("What would you like? (espresso/latte/cappuccino): ").lower()
+
+        if type_of_coffee == 'latte' or type_of_coffee == 'espresso' or type_of_coffee == 'cappuccino':
+            check_resources(type_of_coffee)
+
+        if type_of_coffee == 'report':
+            print(report())
+
+        if type_of_coffee == "off":
+            on = False
+
+
+game()
+
+
 def report():
     return f"Water: {resources['water']}ml \nMilk: {resources['milk']}ml \nCoffee {resources['coffee']}g"
 
@@ -56,18 +75,3 @@ def get_menu_milk(coffee_type):
 
 def get_menu_coffee(coffee_type):
     return MENU[coffee_type]["ingredients"]["coffee"]
-
-
-on = True
-
-while on:
-    type_of_coffee = input("What would you like? (espresso/latte/cappuccino): ").lower()
-
-    if type_of_coffee == 'latte' or type_of_coffee == 'espresso' or type_of_coffee == 'cappuccino':
-        check_resources(type_of_coffee)
-
-    if type_of_coffee == 'report':
-        print(report())
-
-    if type_of_coffee == "off":
-        on = False
