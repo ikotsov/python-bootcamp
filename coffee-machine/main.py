@@ -58,9 +58,9 @@ def get_menu_coffee(coffee_type):
     return MENU[coffee_type]["ingredients"]["coffee"]
 
 
-active = True
+on = True
 
-while active:
+while on:
     type_of_coffee = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
     if type_of_coffee == 'latte' or type_of_coffee == 'espresso' or type_of_coffee == 'cappuccino':
@@ -70,4 +70,4 @@ while active:
         print(report())
 
     if type_of_coffee == "off":
-        active = False
+        on = False
