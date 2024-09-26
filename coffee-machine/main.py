@@ -5,15 +5,15 @@ def game():
     on = True
 
     while on:
-        type_of_coffee = input("What would you like? (espresso/latte/cappuccino): ").lower()
+        user_input = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
-        if type_of_coffee == 'latte' or type_of_coffee == 'espresso' or type_of_coffee == 'cappuccino':
-            check_resources(type_of_coffee)
+        if user_input == 'latte' or user_input == 'espresso' or user_input == 'cappuccino':
+            check_resources(user_input)
 
-        if type_of_coffee == 'report':
+        if user_input == 'report':
             print(report())
 
-        if type_of_coffee == "off":
+        if user_input == "off":
             on = False
 
 
