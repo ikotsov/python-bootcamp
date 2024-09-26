@@ -1,34 +1,4 @@
-MENU = {
-    "espresso": {
-        "ingredients": {
-            "water": 50,
-            "coffee": 18,
-        },
-        "cost": 1.5,
-    },
-    "latte": {
-        "ingredients": {
-            "water": 200,
-            "milk": 150,
-            "coffee": 24,
-        },
-        "cost": 2.5,
-    },
-    "cappuccino": {
-        "ingredients": {
-            "water": 250,
-            "milk": 100,
-            "coffee": 24,
-        },
-        "cost": 3.0,
-    }
-}
-
-resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
-}
+from state import MENU, resources
 
 
 def game():
@@ -45,9 +15,6 @@ def game():
 
         if type_of_coffee == "off":
             on = False
-
-
-game()
 
 
 def report():
@@ -75,3 +42,6 @@ def get_menu_milk(coffee_type):
 
 def get_menu_coffee(coffee_type):
     return MENU[coffee_type]["ingredients"]["coffee"]
+
+
+game()
