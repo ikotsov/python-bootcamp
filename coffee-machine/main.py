@@ -9,12 +9,12 @@ def game():
 
         if user_input == 'latte' or user_input == 'espresso' or user_input == 'cappuccino':
             handle_coffee_input(user_input)
-
-        if user_input == 'report':
+        elif user_input == 'report':
             print(report())
-
-        if user_input == "off":
+        elif user_input == "off":
             on = False
+        else:
+            print("Wrong input")
 
 
 def handle_coffee_input(coffee_type):
