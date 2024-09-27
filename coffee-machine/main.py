@@ -19,30 +19,29 @@ def game():
 
 def handle_coffee_input(coffee_type):
     enough_resources = enough_water(coffee_type) and enough_milk(coffee_type) and enough_coffee(coffee_type)
-    if enough_resources:
-        coins_inserted = process_coins()
-        coffee_costs = state.MENU[coffee_type]["cost"]
-        if coins_inserted < coffee_costs:
-            print("Sorry that's not enough money. Money refunded.")
-        else:
-            change = coins_inserted - coffee_costs
-            if change > 0:
-                print(f"Here is ${round(change, 2)} dollars in change.")
+    if not enough_resources:
+        if not enough_water(coffee_type):
+            print("Sorry there is not enough water.")
+            return
+        if not enough_milk(coffee_type):
+            print("Sorry there is not enough milk.")
+            return
+        if not enough_coffee(coffee_type):
+            print("Sorry there is not enough coffee.")
+            return
 
-            state.profit += coffee_costs
-            deduct_resources(coffee_type)
-            print(f"Here is your {coffee_type} ☕️. Enjoy!")
+    coins_inserted = process_coins()
+    coffee_costs = state.MENU[coffee_type]["cost"]
+    if coins_inserted < coffee_costs:
+        print("Sorry that's not enough money. Money refunded.")
+    else:
+        change = coins_inserted - coffee_costs
+        if change > 0:
+            print(f"Here is ${round(change, 2)} dollars in change.")
 
-        return
-
-    if not enough_water(coffee_type):
-        print("Sorry there is not enough water.")
-        return
-    if not enough_milk(coffee_type):
-        print("Sorry there is not enough milk.")
-        return
-    if not enough_coffee(coffee_type):
-        print("Sorry there is not enough coffee.")
+        state.profit += coffee_costs
+        deduct_resources(coffee_type)
+        print(f"Here is your {coffee_type} ☕️. Enjoy!")
 
 
 def enough_water(coffee_type):
