@@ -60,6 +60,12 @@ def enough_coffee(coffee_type):
     return coffee_left < state.resources["coffee"]
 
 
+QUARTER = 0.25
+DIME = 0.10
+NICKLE = 0.05
+PENNY = 0.01
+
+
 def process_coins():
     print("Please insert coins.")
     quarters = float(input("How many quarters?: "))
@@ -67,7 +73,7 @@ def process_coins():
     nickles = float(input("How many nickles?: "))
     pennies = float(input("How many pennies?: "))
 
-    return (quarters * 0.25) + (dimes * 0.1) + (nickles * 0.05) + (pennies * 0.01)
+    return (quarters * QUARTER) + (dimes * DIME) + (nickles * NICKLE) + (pennies * PENNY)
 
 
 def deduct_resources(coffee_type):
