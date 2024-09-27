@@ -1,4 +1,4 @@
-from state import MENU, resources
+import state
 
 
 def game():
@@ -8,12 +8,7 @@ def game():
         user_input = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
         if user_input == 'latte' or user_input == 'espresso' or user_input == 'cappuccino':
-            if not enough_water(user_input):
-                print("Sorry there is not enough water.")
-            if not enough_milk(user_input):
-                print("Sorry there is not enough milk.")
-            if not enough_coffee(user_input):
-                print("Sorry there is not enough coffee.")
+            handle_coffee_input(user_input)
 
         if user_input == 'report':
             print(report())
@@ -22,23 +17,68 @@ def game():
             on = False
 
 
+def handle_coffee_input(coffee_type):
+    enough_resources = enough_water(coffee_type) and enough_milk(coffee_type) and enough_coffee(coffee_type)
+    if enough_resources:
+        coins_inserted = process_coins()
+        coffee_costs = state.MENU[coffee_type]["cost"]
+        if coins_inserted < coffee_costs:
+            print("Sorry that's not enough money. Money refunded.")
+        else:
+            change = coins_inserted - coffee_costs
+            if change > 0:
+                print(f"Here is ${round(change, 2)} dollars in change.")
+
+            state.profit += coffee_costs
+            deduct_resources(coffee_type)
+            print(f"Here is your {coffee_type} ☕️. Enjoy!")
+
+        return
+
+    if not enough_water(coffee_type):
+        print("Sorry there is not enough water.")
+        return
+    if not enough_milk(coffee_type):
+        print("Sorry there is not enough milk.")
+        return
+    if not enough_coffee(coffee_type):
+        print("Sorry there is not enough coffee.")
+
+
 def enough_water(coffee_type):
-    water_left = MENU[coffee_type]["ingredients"]["water"]
-    return water_left < resources["water"]
+    water_left = state.MENU[coffee_type]["ingredients"]["water"]
+    return water_left < state.resources["water"]
 
 
 def enough_milk(coffee_type):
-    milk_left = MENU[coffee_type]["ingredients"]["milk"]
-    return milk_left < resources["milk"]
+    milk_left = state.MENU[coffee_type]["ingredients"]["milk"]
+    return milk_left < state.resources["milk"]
 
 
 def enough_coffee(coffee_type):
-    coffee_left = MENU[coffee_type]["ingredients"]["coffee"]
-    return coffee_left < resources["coffee"]
+    coffee_left = state.MENU[coffee_type]["ingredients"]["coffee"]
+    return coffee_left < state.resources["coffee"]
+
+
+def process_coins():
+    print("Please insert coins.")
+    quarters = float(input("How many quarters?: "))
+    dimes = float(input("How many dimes?: "))
+    nickles = float(input("How many nickles?: "))
+    pennies = float(input("How many pennies?: "))
+
+    return (quarters * 0.25) + (dimes * 0.1) + (nickles * 0.05) + (pennies * 0.01)
+
+
+def deduct_resources(coffee_type):
+    ingredients = state.MENU[coffee_type]["ingredients"]
+    state.resources["water"] = state.resources["water"] - ingredients["water"]
+    state.resources["milk"] = state.resources["milk"] - ingredients["milk"]
+    state.resources["coffee"] = state.resources["coffee"] - ingredients["coffee"]
 
 
 def report():
-    return f"Water: {resources['water']}ml \nMilk: {resources['milk']}ml \nCoffee {resources['coffee']}g"
+    return f"Water: {state.resources['water']}ml \nMilk: {state.resources['milk']}ml \nCoffee: {state.resources['coffee']}g \nMoney: ${state.profit}"
 
 
 game()
