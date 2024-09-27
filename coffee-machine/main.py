@@ -18,7 +18,10 @@ def game():
 
 
 def handle_coffee_input(coffee_type):
-    enough_resources = enough_water(coffee_type) and enough_milk(coffee_type) and enough_coffee(coffee_type)
+    enough_resources = enough_water(coffee_type) and enough_coffee(
+        coffee_type) if coffee_type == "espresso" else enough_water(coffee_type) and enough_milk(
+        coffee_type) and enough_coffee(coffee_type)
+
     if not enough_resources:
         if not enough_water(coffee_type):
             print("Sorry there is not enough water.")
@@ -78,8 +81,9 @@ def process_coins():
 def deduct_resources(coffee_type):
     ingredients = state.MENU[coffee_type]["ingredients"]
     state.resources["water"] = state.resources["water"] - ingredients["water"]
-    state.resources["milk"] = state.resources["milk"] - ingredients["milk"]
     state.resources["coffee"] = state.resources["coffee"] - ingredients["coffee"]
+    if coffee_type != "espresso":
+        state.resources["milk"] = state.resources["milk"] - ingredients["milk"]
 
 
 def report():
