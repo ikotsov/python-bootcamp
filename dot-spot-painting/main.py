@@ -1,26 +1,13 @@
-import turtle as t
-import random
+import colorgram
 
-t.colormode(255)
+colors = colorgram.extract('painting.webp', 30)
 
+rgb_colors= []
 
-def get_random_color():
-    red = random.randint(0, 255)
-    green = random.randint(0, 255)
-    blue = random.randint(0, 255)
-    random_color = (red, green, blue)
-    return random_color
+for color in colors:
+    red = color.rgb.r
+    green = color.rgb.g
+    blue = color.rgb.b
+    rgb_colors.append((red, green, blue))
 
-
-turtle = t.Turtle()
-turtle.speed('fastest')
-
-GAP_SIZE = 5
-
-for angle in range(1, 360, GAP_SIZE):
-    turtle.color(get_random_color())
-    turtle.circle(100)
-    turtle.setheading(angle)
-
-screen = t.Screen()
-screen.exitonclick()
+print(rgb_colors)
