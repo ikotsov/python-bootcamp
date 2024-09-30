@@ -13,11 +13,14 @@ def get_random_color():
 
 
 turtle = t.Turtle()
-turtle.pensize(15)
+turtle.speed('fastest')
 
-orientation = [0, 90, 180, 270]
+GAP_SIZE = 5
 
-for _ in range(200):
+for angle in range(1, 360, GAP_SIZE):
     turtle.color(get_random_color())
-    turtle.setheading(random.choice(orientation))
-    turtle.forward(30)
+    turtle.circle(100)
+    turtle.setheading(angle)
+
+screen = t.Screen()
+screen.exitonclick()
